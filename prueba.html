@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Félix González Álvarez — Data Analyst</title>
+
+    <meta name="description"
+        content="Portfolio de Félix González Álvarez — Data Analyst especializado en datos, salud, laboratorio y análisis avanzado.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        /* =====================================================
+           VARIABLES
+        ===================================================== */
+
+        :root {
+            --bg: #f5f5f2;
+            --surface: #ffffff;
+            --dark: #111111;
+            --muted: #6d6d6d;
+            --line: #d8d8d4;
+
+            --blue: #1749ff;
+            --red: #e32b24;
+
+            --max-width: 1450px;
+            --padding: clamp(24px, 5vw, 80px);
+
+            --transition: cubic-bezier(.16,1,.3,1);
+        }
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--dark);
+            font-family: "DM Sans", sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        /* =====================================================
+           CUSTOM SCROLLBAR
+        ===================================================== */
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--dark);
+        }
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        .container {
+            width: min(100%, var(--max-width));
+            margin: auto;
+        }
+
+        .mono {
+            font-family: "DM Mono", monospace;
+        }
+
+        .uppercase {
+            text-transform: uppercase;
+        }
+
+        .section {
+            padding: 120px var(--padding);
+            border-bottom: 1px solid var(--dark);
+        }
+
+        .section-label {
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+            letter-spacing: .14em;
+            color: var(--muted);
+            margin-bottom: 60px;
+        }
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            border-bottom: 1px solid var(--dark);
+
+            background: rgba(245,245,242,.86);
+            backdrop-filter: blur(18px);
+
+            transition:
+                background .3s ease,
+                box-shadow .3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(245,245,242,.96);
+            box-shadow: 0 10px 30px rgba(0,0,0,.06);
+        }
+
+        .nav {
+            min-height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 var(--padding);
+        }
+
+        .logo {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -.05em;
+        }
+
+        .logo span {
+            color: var(--blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 42px;
+        }
+
+        .nav-links a {
+            position: relative;
+
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+
+            color: var(--muted);
+
+            transition: color .25s ease;
+        }
+
+        .nav-links a::after {
+            content: "";
+
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+
+            width: 0;
+            height: 2px;
+
+            background: var(--blue);
+
+            transition: width .3s var(--transition);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--dark);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .contact-button {
+            border: 1px solid var(--dark);
+            padding: 11px 18px;
+
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+
+            transition:
+                background .3s ease,
+                color .3s ease,
+                transform .3s var(--transition);
+        }
+
+        .contact-button:hover {
+            background: var(--dark);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu {
+            display: none;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 25px;
+        }
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+            min-height: 100vh;
+
+            padding:
+                150px var(--padding)
+                80px;
+
+            display: flex;
+            align-items: center;
+
+            border-bottom: 1px solid var(--dark);
+        }
+
+        .hero-grid {
+            width: 100%;
+
+            display: grid;
+            grid-template-columns: 1.6fr .7fr;
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            margin-bottom: 25px;
+
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+            letter-spacing: .1em;
+            color: var(--red);
+            text-transform: uppercase;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--red);
+
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%,100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .4;
+                transform: scale(.7);
+            }
+        }
+
+        .hero h1 {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(64px, 9vw, 145px);
+            line-height: .82;
+
+            letter-spacing: -.075em;
+            font-weight: 700;
+
+            max-width: 1100px;
+        }
+
+        .hero h1 span {
+            color: var(--blue);
+        }
+
+        .hero-subtitle {
+            margin-top: 40px;
+
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(20px, 2vw, 30px);
+
+            line-height: 1.15;
+            text-transform: uppercase;
+
+            max-width: 850px;
+        }
+
+        .hero-description {
+            margin-top: 28px;
+
+            max-width: 700px;
+
+            color: var(--muted);
+
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+        }
+
+        .hero-image {
+            position: relative;
+
+            aspect-ratio: 3 / 4;
+
+            overflow: hidden;
+
+            border: 1px solid var(--dark);
+
+            background: #ddd;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            filter: grayscale(100%);
+            transition:
+                transform 1s var(--transition),
+                filter .5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .image-frame {
+            position: absolute;
+
+            inset: 16px;
+
+            border: 1px solid rgba(255,255,255,.5);
+
+            pointer-events: none;
+        }
+
+        .image-tag {
+            position: absolute;
+
+            bottom: -18px;
+            left: -18px;
+
+            background: var(--dark);
+            color: white;
+
+            padding: 13px 17px;
+
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            right: var(--padding);
+
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            letter-spacing: .1em;
+            color: var(--muted);
+
+            writing-mode: vertical-rl;
+        }
+
+        /* =====================================================
+           MARQUEE
+        ===================================================== */
+
+        .marquee {
+            overflow: hidden;
+
+            border-bottom: 1px solid var(--dark);
+
+            background: var(--dark);
+            color: white;
+        }
+
+        .marquee-track {
+            width: max-content;
+
+            display: flex;
+            gap: 60px;
+
+            padding: 18px 0;
+
+            animation: marquee 22s linear infinite;
+        }
+
+        .marquee span {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+        }
+
+        .marquee .dot {
+            color: var(--blue);
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* =====================================================
+           EXPERTISE
+        ===================================================== */
+
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(12,1fr);
+            gap: 24px;
+        }
+
+        .expertise-card {
+            grid-column: span 4;
+
+            border-top: 2px solid var(--blue);
+
+            padding: 28px 0;
+
+            transition:
+                transform .5s var(--transition);
+        }
+
+        .expertise-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .expertise-card:nth-child(4),
+        .expertise-card:nth-child(5) {
+            grid-column: span 6;
+            border-top-color: var(--red);
+        }
+
+        .expertise-number {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        .expertise-card h3 {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(25px,3vw,42px);
+            line-height: 1;
+
+            text-transform: uppercase;
+
+            margin-bottom: 25px;
+        }
+
+        .expertise-card p {
+            max-width: 500px;
+
+            color: var(--muted);
+            line-height: 1.6;
+
+            margin-bottom: 22px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .tag {
+            padding: 7px 10px;
+
+            background: var(--dark);
+            color: white;
+
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+        }
+
+        .tag.blue {
+            background: var(--blue);
+        }
+
+        .tag.red {
+            background: var(--red);
+        }
+
+        /* =====================================================
+           PROJECTS
+        ===================================================== */
+
+        .projects-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+
+            margin-bottom: 70px;
+        }
+
+        .projects-title {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(40px,6vw,80px);
+            line-height: .95;
+
+            letter-spacing: -.06em;
+
+            max-width: 900px;
+        }
+
+        .projects-intro {
+            max-width: 300px;
+
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 80px 30px;
+        }
+
+        .project {
+            cursor: pointer;
+        }
+
+        .project-image {
+            position: relative;
+
+            aspect-ratio: 16 / 10;
+
+            overflow: hidden;
+
+            border: 1px solid var(--dark);
+
+            background: #ddd;
+
+            margin-bottom: 24px;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform 1s var(--transition),
+                filter .5s ease;
+        }
+
+        .project:hover .project-image img {
+            transform: scale(1.06);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(23,73,255,.88);
+
+            color: white;
+
+            opacity: 0;
+
+            transition: opacity .5s ease;
+        }
+
+        .project:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-overlay span {
+            border: 1px solid white;
+
+            padding: 15px 20px;
+
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+
+            transform: translateY(15px);
+
+            transition: transform .5s var(--transition);
+        }
+
+        .project:hover .project-overlay span {
+            transform: translateY(0);
+        }
+
+        .project-number {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+
+            z-index: 2;
+
+            background: white;
+
+            padding: 8px 10px;
+
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+        }
+
+        .project-type {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+
+            z-index: 2;
+
+            padding: 8px 10px;
+
+            background: var(--dark);
+            color: white;
+
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+        }
+
+        .project h3 {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(25px,3vw,40px);
+            line-height: 1;
+
+            text-transform: uppercase;
+
+            transition: color .3s ease;
+        }
+
+        .project:hover h3 {
+            color: var(--blue);
+        }
+
+        .project p {
+            margin-top: 12px;
+
+            max-width: 650px;
+
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 15px;
+
+            margin-top: 18px;
+        }
+
+        .project-meta span {
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+
+            color: var(--muted);
+
+            text-transform: uppercase;
+        }
+
+        /* =====================================================
+           PROJECT PLACEHOLDER
+        ===================================================== */
+
+        .project-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ecece8 25%,
+                    transparent 25%
+                ) 0 0 / 30px 30px;
+
+            color: var(--muted);
+
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+        }
+
+        /* =====================================================
+           ABOUT / NUMBERS
+        ===================================================== */
+
+        .impact {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+        }
+
+        .impact-title {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(40px,5vw,70px);
+            line-height: .95;
+            letter-spacing: -.05em;
+        }
+
+        .impact-content {
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            gap: 30px;
+        }
+
+        .stat {
+            border-top: 1px solid var(--dark);
+            padding-top: 20px;
+        }
+
+        .stat-number {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(50px,6vw,90px);
+            line-height: .9;
+            color: var(--blue);
+        }
+
+        .stat-label {
+            margin-top: 15px;
+
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* =====================================================
+           CONTACT
+        ===================================================== */
+
+        .contact {
+            min-height: 80vh;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-title {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(60px,10vw,150px);
+
+            line-height: .82;
+            letter-spacing: -.07em;
+
+            text-transform: uppercase;
+        }
+
+        .contact-title span {
+            color: var(--blue);
+        }
+
+        .contact-description {
+            max-width: 650px;
+
+            margin-top: 40px;
+
+            font-size: 19px;
+            line-height: 1.6;
+
+            color: var(--muted);
+        }
+
+        .contact-links {
+            margin-top: 55px;
+
+            display: flex;
+            flex-direction: column;
+
+            max-width: 700px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 20px 0;
+
+            border-bottom: 1px solid var(--dark);
+
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 25px;
+            text-transform: uppercase;
+
+            transition:
+                padding .4s var(--transition),
+                color .3s ease;
+        }
+
+        .contact-link:hover {
+            padding-left: 15px;
+            color: var(--blue);
+        }
+
+        .contact-link span:last-child {
+            font-family: "DM Mono", monospace;
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            border-top: 1px solid var(--dark);
+
+            padding: 30px var(--padding);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+
+            z-index: 2000;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+
+            background: rgba(0,0,0,.75);
+            backdrop-filter: blur(12px);
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity .4s ease,
+                visibility .4s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            width: min(900px,100%);
+
+            max-height: 90vh;
+            overflow-y: auto;
+
+            background: var(--bg);
+
+            border: 1px solid var(--dark);
+
+            padding: clamp(25px,5vw,60px);
+
+            transform: translateY(30px) scale(.97);
+
+            transition:
+                transform .5s var(--transition);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
+        .modal-close {
+            position: absolute;
+
+            top: 20px;
+            right: 25px;
+
+            border: none;
+            background: none;
+
+            color: white;
+
+            font-size: 35px;
+
+            cursor: pointer;
+        }
+
+        .modal-content h2 {
+            font-family: "Space Grotesk", sans-serif;
+
+            font-size: clamp(35px,6vw,70px);
+
+            line-height: .9;
+
+            text-transform: uppercase;
+
+            margin-bottom: 30px;
+        }
+
+        .modal-content p {
+            max-width: 700px;
+
+            color: var(--muted);
+
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        .modal-image {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+
+        /* =====================================================
+           REVEAL ANIMATIONS
+        ===================================================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+
+            transition:
+                opacity .9s var(--transition),
+                transform .9s var(--transition);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .nav-links,
+            .contact-button {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image-wrapper {
+                max-width: 420px;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .expertise-card,
+            .expertise-card:nth-child(4),
+            .expertise-card:nth-child(5) {
+                grid-column: span 6;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 30px;
+            }
+
+            .impact {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .section {
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+
+            .hero {
+                padding-top: 120px;
+            }
+
+            .hero h1 {
+                font-size: clamp(58px,17vw,100px);
+            }
+
+            .hero-image-wrapper {
+                max-width: 100%;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .expertise-card,
+            .expertise-card:nth-child(4),
+            .expertise-card:nth-child(5) {
+                grid-column: span 1;
+            }
+
+            .impact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-link {
+                font-size: 20px;
+            }
+
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header id="header">
+
+    <nav class="nav">
+
+        <a href="#home" class="logo">
+            FÉLIX<span>.</span>
+        </a>
+
+        <div class="nav-links">
+
+            <a href="#home" class="active">Home</a>
+
+            <a href="#expertise">Expertise</a>
+
+            <a href="#projects">Projects</a>
+
+            <a href="#contact">Contact</a>
+
+        </div>
+
+        <a href="#contact" class="contact-button">
+            Get in touch
+        </a>
+
+        <button class="mobile-menu">
+            ☰
+        </button>
+
+    </nav>
+
+</header>
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<main>
+
+<section id="home" class="hero">
+
+    <div class="hero-grid">
+
+        <div class="reveal">
+
+            <div class="eyebrow">
+
+                <span class="status-dot"></span>
+
+                Healthcare Data Analyst
+
+            </div>
+
+            <h1>
+
+                DATA<br>
+
+                <span>MEETS</span><br>
+
+                HEALTH.
+
+            </h1>
+
+            <div class="hero-subtitle">
+
+                Analista de Datos · Laboratorio Clínico · Anatomía Patológica
+
+            </div>
+
+            <p class="hero-description">
+
+                Transformo datos complejos en información útil para
+                comprender procesos, detectar patrones y convertir
+                información clínica en decisiones estratégicas.
+
+            </p>
+
+        </div>
+
+        <div class="hero-image-wrapper reveal">
+
+            <div class="hero-image">
+
+                <!-- RUTA DE TU FOTO PROFESIONAL -->
+
+                <img
+                    src="Utiles/Imagenes/foto profesional.png"
+                    alt="Félix González Álvarez"
+                >
+
+                <div class="image-frame"></div>
+
+            </div>
+
+            <div class="image-tag">
+
+                DATA / HEALTH / ANALYTICS
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="scroll-indicator">
+
+        SCROLL ↓
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     MARQUEE
+===================================================== -->
+
+<div class="marquee">
+
+    <div class="marquee-track">
+
+        <span>DATA ANALYTICS</span>
+        <span class="dot">●</span>
+
+        <span>HEALTHCARE</span>
+        <span class="dot">●</span>
+
+        <span>PYTHON</span>
+        <span class="dot">●</span>
+
+        <span>SQL</span>
+        <span class="dot">●</span>
+
+        <span>POWER BI</span>
+        <span class="dot">●</span>
+
+        <span>PATHOLOGY</span>
+        <span class="dot">●</span>
+
+        <span>DATA ANALYTICS</span>
+        <span class="dot">●</span>
+
+        <span>HEALTHCARE</span>
+        <span class="dot">●</span>
+
+        <span>PYTHON</span>
+        <span class="dot">●</span>
+
+        <span>SQL</span>
+        <span class="dot">●</span>
+
+        <span>POWER BI</span>
+        <span class="dot">●</span>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     EXPERTISE
+===================================================== -->
+
+<section id="expertise" class="section">
+
+    <div class="container">
+
+        <div class="section-label">
+            01 — AREAS OF EXPERTISE
+        </div>
+
+        <div class="expertise-grid">
+
+            <article class="expertise-card reveal">
+
+                <div class="expertise-number">
+                    01 / 05
+                </div>
+
+                <h3>
+                    Data<br>Analytics
+                </h3>
+
+                <p>
+                    Análisis, transformación y visualización
+                    de datos para convertir información en
+                    conocimiento accionable.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">Python</span>
+                    <span class="tag">SQL</span>
+                    <span class="tag">Power BI</span>
+                    <span class="tag">Tableau</span>
+
+                </div>
+
+            </article>
+
+            <article class="expertise-card reveal">
+
+                <div class="expertise-number">
+                    02 / 05
+                </div>
+
+                <h3>
+                    Healthcare<br>Data
+                </h3>
+
+                <p>
+                    Análisis y organización de datos aplicados al ámbito sanitario,
+                    utilizando herramientas de análisis, transformación y visualización
+                    para obtener información clara y útil.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag blue">Excel</span>
+                    <span class="tag blue">Power BI</span>
+                    <span class="tag blue">Power Query</span>
+                    <span class="tag blue">Data Analysis</span>
+
+                </div>
+
+            </article>
+
+            <article class="expertise-card reveal">
+
+                <div class="expertise-number">
+                    03 / 05
+                </div>
+
+                <h3>
+                    Clinical<br>Laboratory
+                </h3>
+
+                <p>
+                    Preparación, análisis y procesamiento de muestras biológicas
+                    siguiendo protocolos de calidad, con experiencia en toma de muestras,
+                    equipos automatizados y apoyo al diagnóstico de enfermedades infecciosas.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag">Biological Samples</span>
+                    <span class="tag">Quality Control</span>
+                    <span class="tag">Automated Equipment</span>
+                    <span class="tag">Clinical Diagnosis</span>
+
+                </div>
+
+            </article>
+
+            <article class="expertise-card reveal">
+
+                <div class="expertise-number">
+                    04 / 05
+                </div>
+
+                <h3>
+                    Anatomía<br>Patológica
+                </h3>
+
+                <p>
+                    Preparación y procesamiento de muestras para estudios histológicos y citológicos,
+                    manejo de equipos especializados, conservación de muestras y participación en autopsias
+                    y necropsias, con especial atención a la calidad del procedimiento.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag red">Histología</span>
+                    <span class="tag red">Citología</span>
+                    <span class="tag red">Tinciones</span>
+                    <span class="tag red">Autopsias / Necropsias</span>
+
+                </div>
+
+            </article>
+
+            <article class="expertise-card reveal">
+
+                <div class="expertise-number">
+                    05 / 05
+                </div>
+
+                <h3>
+                    Process<br>Optimization
+                </h3>
+
+                <p>
+                    Identificación de ineficiencias, mejora continua de procedimientos
+                    y organización de espacios, utilizando indicadores y criterios de calidad
+                    para optimizar procesos de trabajo.
+                </p>
+
+                <div class="tags">
+
+                    <span class="tag red">Process Improvement</span>
+                    <span class="tag red">Quality Control</span>
+                    <span class="tag red">Organization</span>
+                    <span class="tag red">Continuous Improvement</span>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     PROJECTS
+===================================================== -->
+
+<section id="projects" class="section">
+
+    <div class="container">
+
+        <div class="section-label">
+            02 — SELECTED PROJECTS
+        </div>
+
+        <div class="projects-header">
+
+            <h2 class="projects-title reveal">
+
+                DATOS QUE<br>
+                <span style="color:var(--blue)">
+                    CUENTAN
+                </span>
+                HISTORIAS.
+
+            </h2>
+
+            <p class="projects-intro reveal">
+
+                Una selección de proyectos donde combino
+                análisis, programación, visualización y
+                conocimiento científico.
+
+            </p>
+
+        </div>
+
+        <div class="projects-grid">
+
+            <!-- =================================================
+                 PROJECT 01 — CONJUGACIÓN
+            ================================================== -->
+
+            <article
+                class="project reveal"
+                onclick="openProject('conjugacion')"
+            >
+
+                <div class="project-image">
+
+                    <!-- RUTA DE LA PORTADA DE CONJUGACIÓN -->
+
+                    <img
+                        src="Utiles/Imagenes/proyecto conjugacion.png"
+                        alt="Proyecto de conjugación bacteriana"
+                    >
+
+                    <span class="project-number">
+                        01
+                    </span>
+
+                    <span class="project-type">
+                        Laboratorio
+                    </span>
+
+                    <div class="project-overlay">
+
+                        <span>
+                            Ver proyecto →
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <h3>
+                    Bacterial<br>
+                    Conjugation Analytics
+                </h3>
+
+                <p>
+
+                    Monitoreo y análisis de datos experimentales
+                    para estudiar la eficiencia de la conjugación
+                    bacteriana y la transferencia horizontal
+                    de plásmidos.
+
+                </p>
+
+                <div class="project-meta">
+
+                    <span>Laboratorio Clínico</span>
+
+                    <span>Data Analysis</span>
+
+                    <span>01 / 04</span>
+
+                </div>
+
+            </article>
+
+            <!-- =================================================
+                 PROJECT 02 — INSULINA
+            ================================================== -->
+
+            <article
+                class="project reveal"
+                onclick="openProject('insulina')"
+            >
+
+                <div class="project-image">
+
+                    <!-- RUTA DE LA PORTADA DE INSULINA -->
+
+                    <img
+                        src="Utiles/Imagenes/proyecto insulina.png"
+                        alt="Proyecto de producción de insulina"
+                    >
+
+                    <span class="project-number">
+                        02
+                    </span>
+
+                    <span class="project-type">
+                        Biotechnology
+                    </span>
+
+                    <div class="project-overlay">
+
+                        <span>
+                            Ver proyecto →
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <h3>
+                    Plant-Based<br>
+                    Insulin Production
+                </h3>
+
+                <p>
+
+                    Diseño y modelado de información relacionado
+                    con la producción de insulina recombinante
+                    expresada en tejidos vegetales.
+
+                </p>
+
+                <div class="project-meta">
+
+                    <span>Biotechnology</span>
+
+                    <span>Data Modeling</span>
+
+                    <span>02 / 04</span>
+
+                </div>
+
+            </article>
+
+            <!-- PROJECT 03 — PIROVIGÍA -->
+            <article class="project reveal" onclick="openProject('pirovigia')">
+                <div class="project-image">
+                    <img src="Utiles/Imagenes/proyecto pirovigia.png" alt="Proyecto Pirovigía">
+                    <span class="project-number">03</span>
+                    <span class="project-type">Python / ML</span>
+                    <div class="project-overlay"><span>Ver proyecto →</span></div>
+                </div>
+                <h3>Pirovigía<br>Wildfire Risk</h3>
+                <p>Modelo predictivo desarrollado para estimar el riesgo de incendios forestales a partir de datos históricos y variables ambientales.</p>
+                <div class="project-meta">
+                    <span>Python</span><span>Machine Learning</span><span>Data Analysis</span><span>03 / 04</span>
+                </div>
+            </article>
+
+            <!-- PROJECT 04 — IN DEVELOPMENT -->
+            <article class="project reveal" onclick="openProject('building')">
+                <div class="project-image">
+                    <div class="project-placeholder">NEW PROJECT / IN DEVELOPMENT</div>
+                    <span class="project-number">04</span>
+                    <span class="project-type">2026</span>
+                    <div class="project-overlay"><span>Próximamente →</span></div>
+                </div>
+                <h3>Currently<br>Building.</h3>
+                <p>Nuevo proyecto en desarrollo. Explorando nuevas aplicaciones de análisis de datos, programación y machine learning.</p>
+                <div class="project-meta"><span>In Development</span><span>Coming Soon</span><span>04 / 04</span></div>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     IMPACT
+===================================================== -->
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="impact">
+
+            <div class="reveal">
+
+                <div class="section-label">
+                    03 — APPROACH
+                </div>
+
+                <h2 class="impact-title">
+
+                    DATOS.<br>
+                    CONTEXTO.<br>
+                    DECISIÓN.
+
+                </h2>
+
+            </div>
+
+            <div class="impact-content">
+
+                <div class="stat reveal">
+
+                    <div class="stat-number">
+                        01
+                    </div>
+
+                    <div class="stat-label">
+                        Understand
+                    </div>
+
+                </div>
+
+                <div class="stat reveal">
+
+                    <div class="stat-number">
+                        02
+                    </div>
+
+                    <div class="stat-label">
+                        Analyze
+                    </div>
+
+                </div>
+
+                <div class="stat reveal">
+
+                    <div class="stat-number">
+                        03
+                    </div>
+
+                    <div class="stat-label">
+                        Visualize
+                    </div>
+
+                </div>
+
+                <div class="stat reveal">
+
+                    <div class="stat-number">
+                        04
+                    </div>
+
+                    <div class="stat-label">
+                        Improve
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section id="contact" class="section contact">
+
+    <div class="container">
+
+        <div class="section-label">
+            04 — CONTACT
+        </div>
+
+        <h2 class="contact-title reveal">
+
+            LET'S<br>
+
+            <span>WORK</span><br>
+
+            TOGETHER.
+
+        </h2>
+
+        <p class="contact-description reveal">
+
+            Disponible para colaborar en proyectos relacionados
+            con análisis de datos, inteligencia de negocio, laboratorio
+            clínico y anatomía patológica.
+
+        </p>
+
+        <div class="contact-links reveal">
+
+            <a
+                href="mailto:felixgonzaalvatrabajo@gmail.com"
+                class="contact-link"
+            >
+
+                <span>Email</span>
+
+                <span>↗</span>
+
+            </a>
+
+            <a
+                href="https://www.linkedin.com/in/félix-gonzález-álvarez" target="_blank" rel="noopener noreferrer"
+                target="_blank"
+                class="contact-link"
+            >
+
+                <span>LinkedIn</span>
+
+                <span>↗</span>
+
+            </a>
+
+            <a
+                href="https://github.com/felixgonzaalva"
+                target="_blank"
+                class="contact-link"
+            >
+
+                <span>GitHub</span>
+
+                <span>↗</span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer>
+
+    <span>
+        © 2026 — Félix González Álvarez
+    </span>
+
+    <span>
+        Data / Healthcare / Analytics
+    </span>
+
+</footer>
+
+<!-- =====================================================
+     MODAL PROJECTS
+===================================================== -->
+
+<div id="projectModal" class="modal">
+
+    <button
+        class="modal-close"
+        onclick="closeProject()"
+    >
+        ×
+    </button>
+
+    <div class="modal-content">
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* =====================================================
+   HEADER SCROLL
+===================================================== */
+
+const header = document.getElementById("header");
+
+window.addEventListener("scroll", () => {
+
+    if (window.scrollY > 40) {
+
+        header.classList.add("scrolled");
+
+    } else {
+
+        header.classList.remove("scrolled");
+
+    }
+
+});
+
+/* =====================================================
+   REVEAL ON SCROLL
+===================================================== */
+
+const revealElements =
+    document.querySelectorAll(".reveal");
+
+const revealObserver =
+    new IntersectionObserver(
+
+        (entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        },
+        {
+            threshold: .12
+        }
+    );
+revealElements.forEach(element => {
+    revealObserver.observe(element);
+});
+/* =====================================================
+   ACTIVE NAVIGATION
+===================================================== */
+const sections =
+    document.querySelectorAll("section[id]");
+const navLinks =
+    document.querySelectorAll(".nav-links a");
+window.addEventListener("scroll", () => {
+    let current = "";
+    sections.forEach(section => {
+        const sectionTop =
+            section.offsetTop - 150;
+        if (window.scrollY >= sectionTop) {
+            current = section.getAttribute("id");
+        }
+    });
+    navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (
+            link.getAttribute("href") ===
+            "#" + current
+        ) {
+            link.classList.add("active");
+        }
+    });
+});
+/* =====================================================
+   PROJECT MODAL
+===================================================== */
+const projectData = {
+    conjugacion: {
+        title:
+            "Bacterial Conjugation Analytics",
+        image:
+            "Utiles/Imagenes/proyecto conjugacion.png",
+        description:
+            "Proyecto centrado en el análisis de datos experimentales relacionados con la conjugación bacteriana y la transferencia horizontal de plásmidos. El objetivo es organizar la información experimental y utilizar el análisis de datos para estudiar patrones y eficiencia del proceso.",
+        tags:
+            "Laboratorio Clínico · Data Analysis · Experimental Data"
+    },
+    insulina: {
+        title:
+            "Plant-Based Insulin Production",
+        image:
+            "Utiles/Imagenes/proyecto insulina.png",
+        description:
+            "Proyecto orientado al estudio y modelado de información relacionada con la producción de insulina recombinante expresada en tejidos vegetales, combinando contexto biotecnológico con análisis y estructuración de datos.",
+        tags:
+            "Biotechnology · Data Modeling · Research"
+    },
+    kpi: {
+        title:
+            "Clinical KPI Dashboard",
+        image:
+            "",
+        description:
+            "Dashboard conceptual orientado al seguimiento de indicadores clave de rendimiento en entornos de laboratorio. El objetivo es transformar grandes cantidades de información operacional en indicadores visuales fáciles de interpretar.",
+        tags:
+            "Power BI · Data Visualization · KPI"
+    },
+    pathology: {
+        title:
+            "Pathology Analytics Platform",
+        image:
+            "",
+        description:
+            "Pipeline de análisis orientado a estructurar datos relacionados con workflows de anatomía patológica y facilitar el análisis del rendimiento de los procesos.",
+        tags:
+            "Python · SQL · Data Pipeline"
+    }
+,
+    pirovigia: {
+        title:
+            "Pirovigía — Wildfire Risk",
+        image:
+            "Utiles/Imagenes/proyecto pirovigia.png",
+        description:
+            "Pirovigía es un proyecto de análisis de datos y programación orientado a la predicción del riesgo de incendios forestales. El proyecto transforma datos históricos y variables ambientales en información útil para estimar situaciones de peligro y apoyar la toma de decisiones.",
+        tags:
+            "Python · Machine Learning · Data Analysis · Predictive Modeling"
+    },
+    building: {
+        title:
+            "Currently Building",
+        image:
+            "",
+        description:
+            "Este proyecto se encuentra actualmente en desarrollo. La intención es seguir explorando nuevas aplicaciones de análisis de datos, programación y machine learning, con especial interés en proyectos donde los datos puedan convertirse en soluciones útiles.",
+        tags:
+            "In Development · Data · Programming"
+    }
+};
+function openProject(project) {
+    const data =
+        projectData[project];
+    const modal =
+        document.getElementById("projectModal");
+    const content =
+        document.getElementById("modalContent");
+    let imageHTML = "";
+    if (data.image) {
+        imageHTML = `
+            <img
+                class="modal-image"
+                src="${data.image}"
+                alt="${data.title}"
+            >
+        `;
+    }
+    content.innerHTML = `
+        ${imageHTML}
+        <div class="section-label">
+            PROJECT CASE STUDY
+        </div>
+        <h2>
+            ${data.title}
+        </h2>
+        <p>
+            ${data.description}
+        </p>
+        <br>
+        <div class="tags">
+            ${data.tags
+                .split(" · ")
+                .map(tag => `<span class="tag">${tag}</span>`)
+                .join("")
+            }
+        </div>
+    `;
+    modal.classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+function closeProject() {
+    document
+        .getElementById("projectModal")
+        .classList.remove("active");
+
+    document.body.style.overflow = "";
+}
+/* =====================================================
+   CLOSE MODAL CLICK OUTSIDE
+===================================================== */
+document
+    .getElementById("projectModal")
+    .addEventListener("click", event => {
+        if (
+            event.target.id ===
+            "projectModal"
+        ) {
+            closeProject();
+        }
+    });
+/* =====================================================
+   ESC CLOSE MODAL
+===================================================== */
+document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+        closeProject();
+    }
+});
+</script>
+</body>
+</html>
